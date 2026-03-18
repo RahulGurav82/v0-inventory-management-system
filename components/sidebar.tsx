@@ -455,18 +455,17 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
             )}
           </>
         ) : (
-          <Link href={item.href || '#'}>
-            <a
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                isActive
-                  ? 'bg-blue-500/20 text-blue-400'
-                  : 'text-slate-400 hover:text-slate-300 hover:bg-slate-700/50'
-              }`}
-              style={{ paddingLeft: `${12 + level * 12}px` }}
-            >
-              <span className="flex-shrink-0">{item.icon}</span>
-              <span className="text-sm font-medium">{item.label}</span>
-            </a>
+          <Link
+            href={item.href || '#'}
+            className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+              isActive
+                ? 'bg-blue-500/20 text-blue-400'
+                : 'text-slate-400 hover:text-slate-300 hover:bg-slate-700/50'
+            }`}
+            style={{ paddingLeft: `${12 + level * 12}px` }}
+          >
+            <span className="flex-shrink-0">{item.icon}</span>
+            <span className="text-sm font-medium">{item.label}</span>
           </Link>
         )}
       </div>
