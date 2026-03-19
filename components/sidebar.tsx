@@ -70,6 +70,12 @@ const MENU_ITEMS: MenuItem[] = [
         href: '/dashboard/sku',
       },
       {
+        id: 'add-variant',
+        label: 'Add Variant',
+        icon: <Plus className="w-4 h-4" />,
+        href: '/dashboard/products/1/variants/add',
+      },
+      {
         id: 'categories',
         label: 'Categories',
         icon: <Grid className="w-4 h-4" />,
