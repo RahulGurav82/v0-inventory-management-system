@@ -515,14 +515,13 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
 
         {/* Sidebar Footer */}
         <div className="border-t border-slate-700 p-4">
-          <Button
+          <button
             onClick={logout}
-            variant="ghost"
-            className="w-full justify-start text-red-400 hover:text-red-300 hover:bg-slate-700/50"
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-red-400 hover:text-red-300 hover:bg-slate-700/50 transition-colors font-medium"
           >
-            <LogOut className="w-4 h-4 mr-3" />
+            <LogOut className="w-4 h-4" />
             Logout
-          </Button>
+          </button>
         </div>
       </aside>
     </>

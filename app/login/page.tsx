@@ -3,16 +3,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/auth-context';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { Card } from '@/components/ui/card';
 
 const LOCATIONS = ['Main Warehouse', 'Sanpada', 'Ghansoli', 'Nerul', 'Ulwe'];
 
@@ -83,8 +73,7 @@ export default function LoginPage() {
         <div className="absolute bottom-20 right-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl"></div>
       </div>
 
-      <Card className="w-full max-w-md bg-slate-800 border-slate-700 relative z-10 shadow-2xl">
-        <div className="p-8">
+      <div className="w-full max-w-md bg-slate-800 border border-slate-700 rounded-lg relative z-10 shadow-2xl p-8">
           {/* Header */}
           <div className="mb-8 text-center">
             <div className="flex items-center justify-center mb-4">
@@ -119,27 +108,27 @@ export default function LoginPage() {
                   <label className="block text-sm font-medium text-slate-300 mb-2">
                     Select Store Location
                   </label>
-                  <Select value={selectedLocation} onValueChange={setSelectedLocation}>
-                    <SelectTrigger className="bg-slate-700 border-slate-600 text-white h-11">
-                      <SelectValue placeholder="Choose a location" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-slate-700 border-slate-600">
-                      {LOCATIONS.map((loc) => (
-                        <SelectItem key={loc} value={loc} className="text-white">
-                          {loc}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <select
+                    value={selectedLocation}
+                    onChange={(e) => setSelectedLocation(e.target.value)}
+                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="">Choose a location</option>
+                    {LOCATIONS.map((loc) => (
+                      <option key={loc} value={loc}>
+                        {loc}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
-                <Button
+                <button
                   type="submit"
                   disabled={!selectedLocation}
-                  className="w-full h-11 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium"
+                  className="w-full px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-all"
                 >
                   Continue
-                </Button>
+                </button>
               </div>
             </form>
           )}
@@ -160,32 +149,31 @@ export default function LoginPage() {
                   <label className="block text-sm font-medium text-slate-300 mb-2">
                     Phone Number
                   </label>
-                  <Input
+                  <input
                     type="tel"
                     placeholder="+91 XXXXX XXXXX"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value.replace(/\D/g, ''))}
                     maxLength={10}
-                    className="bg-slate-700 border-slate-600 text-white placeholder-slate-500 h-11"
+                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 text-white placeholder-slate-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
                 <div className="flex gap-3">
-                  <Button
+                  <button
                     type="button"
-                    variant="outline"
                     onClick={handleBack}
-                    className="flex-1 h-11 border-slate-600 text-slate-300 hover:bg-slate-700"
+                    className="flex-1 px-4 py-3 border border-slate-600 text-slate-300 hover:bg-slate-700 rounded-lg font-medium transition-all"
                   >
                     Back
-                  </Button>
-                  <Button
+                  </button>
+                  <button
                     type="submit"
                     disabled={phone.length !== 10 || loading}
-                    className="flex-1 h-11 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium"
+                    className="flex-1 px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-all"
                   >
                     {loading ? 'Sending...' : 'Send OTP'}
-                  </Button>
+                  </button>
                 </div>
               </div>
             </form>
@@ -219,35 +207,32 @@ export default function LoginPage() {
                 </div>
 
                 <div className="flex gap-3">
-                  <Button
+                  <button
                     type="button"
-                    variant="outline"
                     onClick={handleBack}
-                    className="flex-1 h-11 border-slate-600 text-slate-300 hover:bg-slate-700"
+                    className="flex-1 px-4 py-3 border border-slate-600 text-slate-300 hover:bg-slate-700 rounded-lg font-medium transition-all"
                   >
                     Back
-                  </Button>
-                  <Button
+                  </button>
+                  <button
                     type="submit"
                     disabled={otp.join('').length !== 6 || loading}
-                    className="flex-1 h-11 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium"
+                    className="flex-1 px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-all"
                   >
                     {loading ? 'Verifying...' : 'Verify OTP'}
-                  </Button>
+                  </button>
                 </div>
 
-                <Button
+                <button
                   type="button"
-                  variant="ghost"
-                  className="w-full text-blue-400 hover:text-blue-300 hover:bg-slate-700/50"
+                  className="w-full px-4 py-2 text-blue-400 hover:text-blue-300 hover:bg-slate-700/50 rounded-lg font-medium transition-all"
                 >
                   Resend OTP
-                </Button>
+                </button>
               </div>
             </form>
           )}
-        </div>
-      </Card>
+      </div>
     </div>
   );
 }
