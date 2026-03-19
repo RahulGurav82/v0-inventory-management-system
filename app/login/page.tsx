@@ -6,6 +6,13 @@ import { useAuth } from '@/context/auth-context';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 const LOCATIONS = ['Main Warehouse', 'Sanpada', 'Ghansoli', 'Nerul', 'Ulwe'];
 
@@ -111,18 +118,18 @@ export default function LoginPage() {
                   <label className="block text-sm font-medium text-slate-300 mb-2">
                     Select Store Location
                   </label>
-                  <Input
-                    as="select"
-                    value={selectedLocation}
-                    onChange={(e) => setSelectedLocation(e.target.value)}
-                  >
-                    <option value="">Choose a location</option>
-                    {LOCATIONS.map((loc) => (
-                      <option key={loc} value={loc}>
-                        {loc}
-                      </option>
-                    ))}
-                  </Input>
+                  <Select value={selectedLocation} onValueChange={setSelectedLocation}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Choose a location" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {LOCATIONS.map((loc) => (
+                        <SelectItem key={loc} value={loc}>
+                          {loc}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <Button

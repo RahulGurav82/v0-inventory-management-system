@@ -40,14 +40,14 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, Var
   asChild?: boolean
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = React.forwardRef<any, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : 'button'
+    const Comp = asChild ? Slot : ('button' as any)
     return (
       <Comp
         data-slot="button"
         className={cn(buttonVariants({ variant, size, className }))}
-        ref={asChild ? undefined : ref}
+        ref={ref}
         {...props}
       />
     )
