@@ -3,6 +3,9 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/auth-context';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Card } from '@/components/ui/card';
 
 const LOCATIONS = ['Main Warehouse', 'Sanpada', 'Ghansoli', 'Nerul', 'Ulwe'];
 
@@ -73,7 +76,7 @@ export default function LoginPage() {
         <div className="absolute bottom-20 right-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="w-full max-w-md bg-slate-800 border border-slate-700 rounded-lg relative z-10 shadow-2xl p-8">
+      <Card className="w-full max-w-md relative z-10 shadow-2xl">
           {/* Header */}
           <div className="mb-8 text-center">
             <div className="flex items-center justify-center mb-4">
@@ -108,10 +111,10 @@ export default function LoginPage() {
                   <label className="block text-sm font-medium text-slate-300 mb-2">
                     Select Store Location
                   </label>
-                  <select
+                  <Input
+                    as="select"
                     value={selectedLocation}
                     onChange={(e) => setSelectedLocation(e.target.value)}
-                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     <option value="">Choose a location</option>
                     {LOCATIONS.map((loc) => (
@@ -119,16 +122,16 @@ export default function LoginPage() {
                         {loc}
                       </option>
                     ))}
-                  </select>
+                  </Input>
                 </div>
 
-                <button
+                <Button
                   type="submit"
                   disabled={!selectedLocation}
-                  className="w-full px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-all"
+                  className="w-full"
                 >
                   Continue
-                </button>
+                </Button>
               </div>
             </form>
           )}
@@ -149,31 +152,31 @@ export default function LoginPage() {
                   <label className="block text-sm font-medium text-slate-300 mb-2">
                     Phone Number
                   </label>
-                  <input
+                  <Input
                     type="tel"
                     placeholder="+91 XXXXX XXXXX"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value.replace(/\D/g, ''))}
                     maxLength={10}
-                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 text-white placeholder-slate-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
                 <div className="flex gap-3">
-                  <button
+                  <Button
                     type="button"
+                    variant="outline"
                     onClick={handleBack}
-                    className="flex-1 px-4 py-3 border border-slate-600 text-slate-300 hover:bg-slate-700 rounded-lg font-medium transition-all"
+                    className="flex-1"
                   >
                     Back
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     type="submit"
                     disabled={phone.length !== 10 || loading}
-                    className="flex-1 px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-all"
+                    className="flex-1"
                   >
                     {loading ? 'Sending...' : 'Send OTP'}
-                  </button>
+                  </Button>
                 </div>
               </div>
             </form>
@@ -207,32 +210,34 @@ export default function LoginPage() {
                 </div>
 
                 <div className="flex gap-3">
-                  <button
+                  <Button
                     type="button"
+                    variant="outline"
                     onClick={handleBack}
-                    className="flex-1 px-4 py-3 border border-slate-600 text-slate-300 hover:bg-slate-700 rounded-lg font-medium transition-all"
+                    className="flex-1"
                   >
                     Back
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     type="submit"
                     disabled={otp.join('').length !== 6 || loading}
-                    className="flex-1 px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-all"
+                    className="flex-1"
                   >
                     {loading ? 'Verifying...' : 'Verify OTP'}
-                  </button>
+                  </Button>
                 </div>
 
-                <button
+                <Button
                   type="button"
-                  className="w-full px-4 py-2 text-blue-400 hover:text-blue-300 hover:bg-slate-700/50 rounded-lg font-medium transition-all"
+                  variant="ghost"
+                  className="w-full"
                 >
                   Resend OTP
-                </button>
+                </Button>
               </div>
             </form>
           )}
-      </div>
+      </Card>
     </div>
   );
 }

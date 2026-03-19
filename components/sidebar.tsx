@@ -29,6 +29,7 @@ import {
   X,
 } from 'lucide-react';
 import { useAuth } from '@/context/auth-context';
+import { Button } from '@/components/ui/button';
 
 interface MenuItem {
   id: string;
@@ -515,13 +516,14 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
 
         {/* Sidebar Footer */}
         <div className="border-t border-slate-700 p-4">
-          <button
+          <Button
             onClick={logout}
-            className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-red-400 hover:text-red-300 hover:bg-slate-700/50 transition-colors font-medium"
+            variant="ghost"
+            className="w-full justify-start text-red-400 hover:text-red-300 hover:bg-red-500/10"
           >
             <LogOut className="w-4 h-4" />
             Logout
-          </button>
+          </Button>
         </div>
       </aside>
     </>
@@ -534,7 +536,7 @@ export function SidebarToggle({ onClick }: { onClick: () => void }) {
       variant="ghost"
       size="icon"
       onClick={onClick}
-      className="lg:hidden text-slate-400 hover:text-slate-300 hover:bg-slate-700/50"
+      className="lg:hidden"
     >
       <Menu className="w-5 h-5" />
     </Button>

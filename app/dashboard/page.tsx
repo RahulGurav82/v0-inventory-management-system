@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useAuth } from '@/context/auth-context';
+import { Card } from '@/components/ui/card';
 import {
   Package,
   Warehouse,
@@ -98,9 +99,9 @@ export default function DashboardPage() {
         {stats.map((stat, index) => {
           const Icon = stat.icon;
           return (
-            <div
+            <Card
               key={index}
-              className="bg-slate-800 border border-slate-700 p-6 hover:border-slate-600 rounded-lg transition-colors"
+              className="hover:border-slate-600 transition-colors"
             >
               <div className="flex items-start justify-between">
                 <div>
@@ -114,7 +115,7 @@ export default function DashboardPage() {
                   <Icon className="w-6 h-6" />
                 </div>
               </div>
-            </div>
+            </Card>
           );
         })}
       </div>
@@ -122,7 +123,7 @@ export default function DashboardPage() {
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Recent Activity */}
-        <div className="lg:col-span-2 bg-slate-800 border border-slate-700 rounded-lg overflow-hidden">
+        <Card className="lg:col-span-2">
           <div className="p-6 border-b border-slate-700">
             <h3 className="text-xl font-bold text-white flex items-center gap-2">
               <Zap className="w-5 h-5 text-blue-400" />
@@ -150,10 +151,10 @@ export default function DashboardPage() {
               </div>
             ))}
           </div>
-        </div>
+        </Card>
 
         {/* Quick Actions */}
-        <div className="bg-slate-800 border border-slate-700 rounded-lg overflow-hidden">
+        <Card>
           <div className="p-6 border-b border-slate-700">
             <h3 className="text-xl font-bold text-white flex items-center gap-2">
               <Box className="w-5 h-5 text-emerald-400" />
@@ -190,11 +191,11 @@ export default function DashboardPage() {
               <p className="text-slate-400 text-xs">Analytics & insights</p>
             </a>
           </div>
-        </div>
+        </Card>
       </div>
 
       {/* Warehouse Overview */}
-      <div className="bg-slate-800 border border-slate-700 rounded-lg overflow-hidden">
+      <Card>
         <div className="p-6 border-b border-slate-700">
           <h3 className="text-xl font-bold text-white flex items-center gap-2">
             <Warehouse className="w-5 h-5 text-emerald-400" />
@@ -222,7 +223,7 @@ export default function DashboardPage() {
               </div>
             ))}
           </div>
-        </div>
+        </Card>
       </div>
     </div>
   );
