@@ -29,7 +29,6 @@ import {
   X,
 } from 'lucide-react';
 import { useAuth } from '@/context/auth-context';
-import { Button } from '@/components/ui/button';
 
 interface MenuItem {
   id: string;
