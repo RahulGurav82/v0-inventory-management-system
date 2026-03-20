@@ -70,6 +70,12 @@ const MENU_ITEMS: MenuItem[] = [
         href: '/dashboard/sku',
       },
       {
+        id: 'add-variant',
+        label: 'Add Variant',
+        icon: <Plus className="w-4 h-4" />,
+        href: '/dashboard/products/1/variants/add',
+      },
+      {
         id: 'categories',
         label: 'Categories',
         icon: <Grid className="w-4 h-4" />,
@@ -519,9 +525,9 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
           <Button
             onClick={logout}
             variant="ghost"
-            className="w-full justify-start text-red-400 hover:text-red-300 hover:bg-slate-700/50"
+            className="w-full justify-start text-red-400 hover:text-red-300 hover:bg-red-500/10"
           >
-            <LogOut className="w-4 h-4 mr-3" />
+            <LogOut className="w-4 h-4" />
             Logout
           </Button>
         </div>
@@ -536,7 +542,7 @@ export function SidebarToggle({ onClick }: { onClick: () => void }) {
       variant="ghost"
       size="icon"
       onClick={onClick}
-      className="lg:hidden text-slate-400 hover:text-slate-300 hover:bg-slate-700/50"
+      className="lg:hidden"
     >
       <Menu className="w-5 h-5" />
     </Button>

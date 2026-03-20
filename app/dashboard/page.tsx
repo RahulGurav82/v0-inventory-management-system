@@ -101,7 +101,7 @@ export default function DashboardPage() {
           return (
             <Card
               key={index}
-              className="bg-slate-800 border-slate-700 p-6 hover:border-slate-600 transition-colors"
+              className="hover:border-slate-600 transition-colors"
             >
               <div className="flex items-start justify-between">
                 <div>
@@ -123,7 +123,7 @@ export default function DashboardPage() {
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Recent Activity */}
-        <Card className="lg:col-span-2 bg-slate-800 border-slate-700">
+        <Card className="lg:col-span-2">
           <div className="p-6 border-b border-slate-700">
             <h3 className="text-xl font-bold text-white flex items-center gap-2">
               <Zap className="w-5 h-5 text-blue-400" />
@@ -154,7 +154,7 @@ export default function DashboardPage() {
         </Card>
 
         {/* Quick Actions */}
-        <Card className="bg-slate-800 border-slate-700">
+        <Card>
           <div className="p-6 border-b border-slate-700">
             <h3 className="text-xl font-bold text-white flex items-center gap-2">
               <Box className="w-5 h-5 text-emerald-400" />
@@ -195,7 +195,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Warehouse Overview */}
-      <Card className="bg-slate-800 border-slate-700">
+      <Card>
         <div className="p-6 border-b border-slate-700">
           <h3 className="text-xl font-bold text-white flex items-center gap-2">
             <Warehouse className="w-5 h-5 text-emerald-400" />

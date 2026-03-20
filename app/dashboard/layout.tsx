@@ -4,14 +4,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/auth-context';
 import { Sidebar, SidebarToggle } from '@/components/sidebar';
-import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { User, MapPin, LogOut, Settings } from 'lucide-react';
+import { User, MapPin, LogOut, Settings, ChevronDown } from 'lucide-react';
 
 export default function DashboardLayout({
   children,
@@ -60,34 +53,28 @@ export default function DashboardLayout({
 
             {/* User Menu */}
             <div className="flex items-center gap-4">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="rounded-full w-10 h-10 bg-blue-500/20 hover:bg-blue-500/30 text-blue-400"
-                  >
-                    <User className="w-5 h-5" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="bg-slate-800 border-slate-700">
+              <div className="relative group">
+                <button className="flex items-center gap-2 rounded-full w-10 h-10 bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 transition-colors justify-center">
+                  <User className="w-5 h-5" />
+                </button>
+                <div className="absolute right-0 mt-2 w-48 bg-slate-800 border border-slate-700 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
                   <div className="px-4 py-2 border-b border-slate-700">
                     <p className="text-sm font-medium text-white">Logged in as</p>
                     <p className="text-xs text-slate-400">+91 {user.phone}</p>
                   </div>
-                  <DropdownMenuItem className="text-slate-300 hover:bg-slate-700 cursor-pointer">
-                    <Settings className="w-4 h-4 mr-2" />
-                    <span>Settings</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
+                  <button className="w-full text-left px-4 py-2 text-slate-300 hover:bg-slate-700 flex items-center gap-2 transition-colors">
+                    <Settings className="w-4 h-4" />
+                    <span className="text-sm">Settings</span>
+                  </button>
+                  <button
                     onClick={handleLogout}
-                    className="text-red-400 hover:bg-slate-700 cursor-pointer"
+                    className="w-full text-left px-4 py-2 text-red-400 hover:bg-slate-700 flex items-center gap-2 transition-colors border-t border-slate-700"
                   >
-                    <LogOut className="w-4 h-4 mr-2" />
-                    <span>Logout</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+                    <LogOut className="w-4 h-4" />
+                    <span className="text-sm">Logout</span>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </header>
