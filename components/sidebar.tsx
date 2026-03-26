@@ -441,8 +441,8 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
               onClick={() => toggleExpand(item.id)}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
                 isActive
-                  ? 'bg-blue-500/20 text-blue-400'
-                  : 'text-slate-400 hover:text-slate-300 hover:bg-slate-700/50'
+                  ? 'bg-primary/10 text-primary dark:text-primary'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-muted'
               }`}
               style={{ paddingLeft: `${12 + level * 12}px` }}
             >
@@ -465,8 +465,8 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
             href={item.href || '#'}
             className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
               isActive
-                ? 'bg-blue-500/20 text-blue-400'
-                : 'text-slate-400 hover:text-slate-300 hover:bg-slate-700/50'
+                ? 'bg-primary/10 text-primary dark:text-primary'
+                : 'text-muted-foreground hover:text-foreground hover:bg-muted'
             }`}
             style={{ paddingLeft: `${12 + level * 12}px` }}
           >
@@ -490,25 +490,25 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
 
       {/* Sidebar */}
       <aside
-        className={`fixed left-0 top-0 h-screen w-64 bg-slate-800 border-r border-slate-700 overflow-y-auto transition-transform duration-300 z-40 flex flex-col ${
+        className={`fixed left-0 top-0 h-screen w-64 bg-card border-r border-border overflow-y-auto transition-transform duration-300 z-40 flex flex-col ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         } lg:translate-x-0 lg:relative lg:z-auto`}
       >
         {/* Sidebar Header */}
-        <div className="sticky top-0 p-6 border-b border-slate-700 bg-slate-800">
+        <div className="sticky top-0 p-6 border-b border-border bg-card">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
                 <Warehouse className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="font-bold text-white text-lg">Inventory</h2>
-                <p className="text-xs text-slate-400">Management</p>
+                <h2 className="font-bold text-foreground text-lg">Inventory</h2>
+                <p className="text-xs text-muted-foreground">Management</p>
               </div>
             </div>
             <button
               onClick={onClose}
-              className="text-slate-400 hover:text-slate-300 lg:hidden"
+              className="text-muted-foreground hover:text-foreground lg:hidden"
             >
               <X className="w-5 h-5" />
             </button>
@@ -521,11 +521,11 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
         </nav>
 
         {/* Sidebar Footer */}
-        <div className="border-t border-slate-700 p-4">
+        <div className="border-t border-border p-4">
           <Button
             onClick={logout}
             variant="ghost"
-            className="w-full justify-start text-red-400 hover:text-red-300 hover:bg-red-500/10"
+            className="w-full justify-start text-destructive hover:bg-destructive/10"
           >
             <LogOut className="w-4 h-4" />
             Logout
