@@ -219,12 +219,11 @@ export default function AddProductForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6">
+    <div className="min-h-screen bg-background p-6">
       <div className="max-w-4xl mx-auto">
-        {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">Add New Product</h1>
-          <p className="text-slate-400">Complete all steps to add a product to your inventory</p>
+          <h1 className="text-4xl font-bold text-foreground mb-2">Add New Product</h1>
+          <p className="text-muted-foreground">Complete all steps to add a product to your inventory</p>
         </div>
 
         {/* Step Indicator */}
@@ -236,8 +235,8 @@ export default function AddProductForm() {
                   <div
                     className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-all ${
                       index <= currentStep
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-slate-700 text-slate-400'
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-muted text-muted-foreground'
                     }`}
                   >
                     {index + 1}
@@ -245,7 +244,7 @@ export default function AddProductForm() {
                   {index < STEPS.length - 1 && (
                     <div
                       className={`flex-1 h-1 mx-2 rounded-full transition-all ${
-                        index < currentStep ? 'bg-blue-500' : 'bg-slate-700'
+                        index < currentStep ? 'bg-primary' : 'bg-muted'
                       }`}
                     />
                   )}
@@ -254,27 +253,27 @@ export default function AddProductForm() {
             ))}
           </div>
           <div className="text-center">
-            <h2 className="text-xl font-semibold text-white mb-1">{STEPS[currentStep]}</h2>
-            <p className="text-slate-400 text-sm">
+            <h2 className="text-xl font-semibold text-foreground mb-1">{STEPS[currentStep]}</h2>
+            <p className="text-muted-foreground text-sm">
               Step {currentStep + 1} of {STEPS.length}
             </p>
           </div>
         </div>
 
         {/* Form Content */}
-        <div className="bg-slate-800/50 backdrop-blur border border-slate-700 rounded-xl p-8 mb-8">
+        <div className="bg-card border border-border rounded-xl p-8 mb-8">
           {submitMessage && (
-            <div className="mb-6 p-4 bg-green-500/20 border border-green-500 rounded-lg">
-              <p className="text-green-400">{submitMessage}</p>
+            <div className="mb-6 p-4 bg-green-500/10 border border-green-500 rounded-lg">
+              <p className="text-green-700 dark:text-green-400">{submitMessage}</p>
             </div>
           )}
 
           {Object.keys(errors).length > 0 && (
-            <div className="mb-6 p-4 bg-red-500/20 border border-red-500 rounded-lg flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+            <div className="mb-6 p-4 bg-destructive/10 border border-destructive rounded-lg flex items-start gap-3">
+              <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-red-400 font-medium">Validation Error</p>
-                <ul className="text-red-300 text-sm mt-1 list-disc list-inside">
+                <p className="text-destructive font-medium">Validation Error</p>
+                <ul className="text-destructive/80 text-sm mt-1 list-disc list-inside">
                   {Object.values(errors).map((error, index) => (
                     <li key={index}>{error}</li>
                   ))}
@@ -288,14 +287,14 @@ export default function AddProductForm() {
             <div className="space-y-6">
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Brand Name *
                   </label>
                   <select
                     value={formData.brandName}
                     onChange={(e) => handleInputChange('brandName', e.target.value)}
-                    className={`w-full px-4 py-2 bg-slate-700 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 ${
-                      errors.brandName ? 'border-red-500' : 'border-slate-600'
+                    className={`w-full px-4 py-2 bg-input border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary ${
+                      errors.brandName ? 'border-destructive' : 'border-border'
                     }`}
                   >
                     <option value="">Select Brand</option>
@@ -308,7 +307,7 @@ export default function AddProductForm() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Product Name *
                   </label>
                   <input
@@ -316,15 +315,15 @@ export default function AddProductForm() {
                     value={formData.productName}
                     onChange={(e) => handleInputChange('productName', e.target.value)}
                     placeholder="e.g., Amul Butter 500g"
-                    className={`w-full px-4 py-2 bg-slate-700 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 ${
-                      errors.productName ? 'border-red-500' : 'border-slate-600'
+                    className={`w-full px-4 py-2 bg-input border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary ${
+                      errors.productName ? 'border-destructive' : 'border-border'
                     }`}
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Description (max 40 chars)
                 </label>
                 <input
@@ -333,16 +332,16 @@ export default function AddProductForm() {
                   value={formData.productDescription}
                   onChange={(e) => handleInputChange('productDescription', e.target.value)}
                   placeholder="Brief product description"
-                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-2 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                 />
-                <p className="text-xs text-slate-500 mt-1">
+                <p className="text-xs text-muted-foreground mt-1">
                   {formData.productDescription.length}/40
                 </p>
               </div>
 
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Category *
                   </label>
                   <select
@@ -351,8 +350,8 @@ export default function AddProductForm() {
                       handleInputChange('category', e.target.value);
                       handleInputChange('subCategory', '');
                     }}
-                    className={`w-full px-4 py-2 bg-slate-700 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 ${
-                      errors.category ? 'border-red-500' : 'border-slate-600'
+                    className={`w-full px-4 py-2 bg-input border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary ${
+                      errors.category ? 'border-destructive' : 'border-border'
                     }`}
                   >
                     <option value="">Select Category</option>
@@ -365,14 +364,14 @@ export default function AddProductForm() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Sub-Category
                   </label>
                   <select
                     value={formData.subCategory}
                     onChange={(e) => handleInputChange('subCategory', e.target.value)}
                     disabled={!formData.category}
-                    className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 disabled:opacity-50"
+                    className="w-full px-4 py-2 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
                   >
                     <option value="">Select Sub-Category</option>
                     {getSubCategories().map((subCat) => (
@@ -386,14 +385,14 @@ export default function AddProductForm() {
 
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Case Type *
                   </label>
                   <select
                     value={formData.caseType}
                     onChange={(e) => handleInputChange('caseType', e.target.value)}
-                    className={`w-full px-4 py-2 bg-slate-700 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 ${
-                      errors.caseType ? 'border-red-500' : 'border-slate-600'
+                    className={`w-full px-4 py-2 bg-input border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary ${
+                      errors.caseType ? 'border-destructive' : 'border-border'
                     }`}
                   >
                     <option value="">Select Case Type</option>
@@ -406,13 +405,13 @@ export default function AddProductForm() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Target Market
                   </label>
                   <select
                     value={formData.targetMarket}
                     onChange={(e) => handleInputChange('targetMarket', e.target.value)}
-                    className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                    className="w-full px-4 py-2 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                   >
                     {TARGET_MARKETS.map((market) => (
                       <option key={market} value={market}>
@@ -424,13 +423,13 @@ export default function AddProductForm() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Country of Origin
                 </label>
                 <select
                   value={formData.countryOfOrigin}
                   onChange={(e) => handleInputChange('countryOfOrigin', e.target.value)}
-                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-2 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   {COUNTRIES.map((country) => (
                     <option key={country} value={country}>
@@ -447,7 +446,7 @@ export default function AddProductForm() {
             <div className="space-y-6">
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     SKU Number *
                   </label>
                   <input
@@ -455,14 +454,14 @@ export default function AddProductForm() {
                     value={formData.skuNumber}
                     onChange={(e) => handleInputChange('skuNumber', e.target.value)}
                     placeholder="e.g., SKU001"
-                    className={`w-full px-4 py-2 bg-slate-700 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 ${
-                      errors.skuNumber ? 'border-red-500' : 'border-slate-600'
+                    className={`w-full px-4 py-2 bg-input border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary ${
+                      errors.skuNumber ? 'border-destructive' : 'border-border'
                     }`}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     SKU Name *
                   </label>
                   <input
@@ -470,8 +469,8 @@ export default function AddProductForm() {
                     value={formData.skuName}
                     onChange={(e) => handleInputChange('skuName', e.target.value)}
                     placeholder="e.g., Amul Butter 500g"
-                    className={`w-full px-4 py-2 bg-slate-700 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 ${
-                      errors.skuName ? 'border-red-500' : 'border-slate-600'
+                    className={`w-full px-4 py-2 bg-input border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary ${
+                      errors.skuName ? 'border-destructive' : 'border-border'
                     }`}
                   />
                 </div>
@@ -479,21 +478,21 @@ export default function AddProductForm() {
 
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">GTIN</label>
+                  <label className="block text-sm font-medium text-foreground mb-2">GTIN</label>
                   <input
                     type="text"
                     value={formData.gtin}
                     onChange={(e) => handleInputChange('gtin', e.target.value)}
                     placeholder="8-14 digit GTIN"
-                    className={`w-full px-4 py-2 bg-slate-700 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 ${
-                      errors.gtin ? 'border-red-500' : 'border-slate-600'
+                    className={`w-full px-4 py-2 bg-input border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary ${
+                      errors.gtin ? 'border-destructive' : 'border-border'
                     }`}
                   />
-                  <p className="text-xs text-slate-500 mt-1">Barcode will auto-fill</p>
+                  <p className="text-xs text-muted-foreground mt-1">Barcode will auto-fill</p>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Primary GTIN
                   </label>
                   <input
@@ -501,34 +500,34 @@ export default function AddProductForm() {
                     value={formData.primaryGtin}
                     onChange={(e) => handleInputChange('primaryGtin', e.target.value)}
                     placeholder="Optional GTIN"
-                    className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                    className="w-full px-4 py-2 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">Barcode</label>
+                <label className="block text-sm font-medium text-foreground mb-2">Barcode</label>
                 <input
                   type="text"
                   value={formData.barcode}
                   onChange={(e) => handleInputChange('barcode', e.target.value)}
                   placeholder="Auto-filled from GTIN"
-                  className={`w-full px-4 py-2 bg-slate-700 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 ${
-                    errors.barcode ? 'border-red-500' : 'border-slate-600'
+                  className={`w-full px-4 py-2 bg-input border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary ${
+                    errors.barcode ? 'border-destructive' : 'border-border'
                   }`}
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Packaging Level *
                   </label>
                   <select
                     value={formData.productPackagingLevel}
                     onChange={(e) => handleInputChange('productPackagingLevel', e.target.value)}
-                    className={`w-full px-4 py-2 bg-slate-700 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 ${
-                      errors.productPackagingLevel ? 'border-red-500' : 'border-slate-600'
+                    className={`w-full px-4 py-2 bg-input border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary ${
+                      errors.productPackagingLevel ? 'border-destructive' : 'border-border'
                     }`}
                   >
                     <option value="">Select Level</option>
@@ -541,14 +540,14 @@ export default function AddProductForm() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Channel *
                   </label>
                   <select
                     value={formData.productChannel}
                     onChange={(e) => handleInputChange('productChannel', e.target.value)}
-                    className={`w-full px-4 py-2 bg-slate-700 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 ${
-                      errors.productChannel ? 'border-red-500' : 'border-slate-600'
+                    className={`w-full px-4 py-2 bg-input border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary ${
+                      errors.productChannel ? 'border-destructive' : 'border-border'
                     }`}
                   >
                     {PRODUCT_CHANNELS.map((channel) => (
@@ -567,14 +566,14 @@ export default function AddProductForm() {
             <div className="space-y-6">
               <div className="grid grid-cols-3 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Measurement Unit *
                   </label>
                   <select
                     value={formData.measurementUnit}
                     onChange={(e) => handleInputChange('measurementUnit', e.target.value)}
-                    className={`w-full px-4 py-2 bg-slate-700 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 ${
-                      errors.measurementUnit ? 'border-red-500' : 'border-slate-600'
+                    className={`w-full px-4 py-2 bg-input border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary ${
+                      errors.measurementUnit ? 'border-destructive' : 'border-border'
                     }`}
                   >
                     {MEASUREMENT_UNITS.map((unit) => (
@@ -586,7 +585,7 @@ export default function AddProductForm() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Net Content Count *
                   </label>
                   <input
@@ -596,20 +595,20 @@ export default function AddProductForm() {
                     onChange={(e) =>
                       handleInputChange('netContentCount', parseFloat(e.target.value) || 0)
                     }
-                    className={`w-full px-4 py-2 bg-slate-700 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 ${
-                      errors.netContentCount ? 'border-red-500' : 'border-slate-600'
+                    className={`w-full px-4 py-2 bg-input border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary ${
+                      errors.netContentCount ? 'border-destructive' : 'border-border'
                     }`}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Packaging Type
                   </label>
                   <select
                     value={formData.packagingType}
                     onChange={(e) => handleInputChange('packagingType', e.target.value)}
-                    className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                    className="w-full px-4 py-2 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                   >
                     <option value="">Select Type</option>
                     {PACKAGING_TYPES.map((type) => (
@@ -621,11 +620,11 @@ export default function AddProductForm() {
                 </div>
               </div>
 
-              <div className="border-t border-slate-700 pt-6">
-                <h3 className="text-sm font-medium text-slate-300 mb-4">Weight Details</h3>
+              <div className="border-t border-border pt-6">
+                <h3 className="text-sm font-medium text-foreground mb-4">Weight Details</h3>
                 <div className="grid grid-cols-3 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Net Weight (kg)
                     </label>
                     <input
@@ -635,15 +634,15 @@ export default function AddProductForm() {
                       onChange={(e) =>
                         handleInputChange('netWeight', parseFloat(e.target.value) || 0)
                       }
-                      className={`w-full px-4 py-2 bg-slate-700 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 ${
-                        errors.netWeight ? 'border-red-500' : 'border-slate-600'
+                      className={`w-full px-4 py-2 bg-input border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary ${
+                        errors.netWeight ? 'border-destructive' : 'border-border'
                       }`}
                     />
-                    <p className="text-xs text-slate-500 mt-1">Gross will auto-calc</p>
+                    <p className="text-xs text-muted-foreground mt-1">Gross will auto-calc</p>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Gross Weight (kg)
                     </label>
                     <input
@@ -653,20 +652,20 @@ export default function AddProductForm() {
                       onChange={(e) =>
                         handleInputChange('grossWeight', parseFloat(e.target.value) || 0)
                       }
-                      className={`w-full px-4 py-2 bg-slate-700 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 ${
-                        errors.grossWeight ? 'border-red-500' : 'border-slate-600'
+                      className={`w-full px-4 py-2 bg-input border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary ${
+                        errors.grossWeight ? 'border-destructive' : 'border-border'
                       }`}
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Weight Unit
                     </label>
                     <select
                       value={formData.weightMeasurementUnit}
                       onChange={(e) => handleInputChange('weightMeasurementUnit', e.target.value)}
-                      className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                      className="w-full px-4 py-2 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                     >
                       {MASS_MEASUREMENT_UNITS.map((unit) => (
                         <option key={unit} value={unit}>
@@ -678,11 +677,11 @@ export default function AddProductForm() {
                 </div>
               </div>
 
-              <div className="border-t border-slate-700 pt-6">
-                <h3 className="text-sm font-medium text-slate-300 mb-4">Dimensions</h3>
+              <div className="border-t border-border pt-6">
+                <h3 className="text-sm font-medium text-foreground mb-4">Dimensions</h3>
                 <div className="grid grid-cols-4 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Height
                     </label>
                     <input
@@ -690,14 +689,14 @@ export default function AddProductForm() {
                       step="0.1"
                       value={formData.height}
                       onChange={(e) => handleInputChange('height', parseFloat(e.target.value) || 0)}
-                      className={`w-full px-4 py-2 bg-slate-700 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 ${
-                        errors.height ? 'border-red-500' : 'border-slate-600'
+                      className={`w-full px-4 py-2 bg-input border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary ${
+                        errors.height ? 'border-destructive' : 'border-border'
                       }`}
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Width
                     </label>
                     <input
@@ -705,14 +704,14 @@ export default function AddProductForm() {
                       step="0.1"
                       value={formData.width}
                       onChange={(e) => handleInputChange('width', parseFloat(e.target.value) || 0)}
-                      className={`w-full px-4 py-2 bg-slate-700 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 ${
-                        errors.width ? 'border-red-500' : 'border-slate-600'
+                      className={`w-full px-4 py-2 bg-input border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary ${
+                        errors.width ? 'border-destructive' : 'border-border'
                       }`}
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Depth
                     </label>
                     <input
@@ -720,20 +719,20 @@ export default function AddProductForm() {
                       step="0.1"
                       value={formData.depth}
                       onChange={(e) => handleInputChange('depth', parseFloat(e.target.value) || 0)}
-                      className={`w-full px-4 py-2 bg-slate-700 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 ${
-                        errors.depth ? 'border-red-500' : 'border-slate-600'
+                      className={`w-full px-4 py-2 bg-input border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary ${
+                        errors.depth ? 'border-destructive' : 'border-border'
                       }`}
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Unit
                     </label>
                     <select
                       value={formData.dimensionUnit}
                       onChange={(e) => handleInputChange('dimensionUnit', e.target.value)}
-                      className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                      className="w-full px-4 py-2 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                     >
                       {DIMENSION_UNITS.map((unit) => (
                         <option key={unit} value={unit}>
@@ -752,7 +751,7 @@ export default function AddProductForm() {
             <div className="space-y-6">
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">MRP *</label>
+                  <label className="block text-sm font-medium text-foreground mb-2">MRP *</label>
                   <input
                     type="number"
                     step="0.01"
@@ -760,20 +759,20 @@ export default function AddProductForm() {
                     value={formData.mrp}
                     onChange={(e) => handleInputChange('mrp', parseFloat(e.target.value) || 0)}
                     placeholder="0.00"
-                    className={`w-full px-4 py-2 bg-slate-700 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 ${
-                      errors.mrp ? 'border-red-500' : 'border-slate-600'
+                    className={`w-full px-4 py-2 bg-input border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary ${
+                      errors.mrp ? 'border-destructive' : 'border-border'
                     }`}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     MRP Location
                   </label>
                   <select
                     value={formData.mrpLocation}
                     onChange={(e) => handleInputChange('mrpLocation', e.target.value)}
-                    className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                    className="w-full px-4 py-2 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                   >
                     {MRP_LOCATIONS.map((location) => (
                       <option key={location} value={location}>
@@ -786,7 +785,7 @@ export default function AddProductForm() {
 
               <div className="grid grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Min Sell Price
                   </label>
                   <input
@@ -798,36 +797,36 @@ export default function AddProductForm() {
                       handleInputChange('minSellPrice', parseFloat(e.target.value) || 0)
                     }
                     placeholder="0.00"
-                    className={`w-full px-4 py-2 bg-slate-700 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 ${
-                      errors.minSellPrice ? 'border-red-500' : 'border-slate-600'
+                    className={`w-full px-4 py-2 bg-input border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary ${
+                      errors.minSellPrice ? 'border-destructive' : 'border-border'
                     }`}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     MRP Activation Date
                   </label>
                   <input
                     type="date"
                     value={formData.mrpActivationDate}
                     onChange={(e) => handleInputChange('mrpActivationDate', e.target.value)}
-                    className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                    className="w-full px-4 py-2 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                   />
                 </div>
               </div>
 
-              <div className="border-t border-slate-700 pt-6">
-                <h3 className="text-sm font-medium text-slate-300 mb-4">Tax Information</h3>
+              <div className="border-t border-border pt-6">
+                <h3 className="text-sm font-medium text-foreground mb-4">Tax Information</h3>
                 <div className="grid grid-cols-3 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Tax Type
                     </label>
                     <select
                       value={formData.taxType}
                       onChange={(e) => handleInputChange('taxType', e.target.value)}
-                      className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                      className="w-full px-4 py-2 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                     >
                       {TAX_TYPES.map((type) => (
                         <option key={type} value={type}>
@@ -838,7 +837,7 @@ export default function AddProductForm() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       IGST (%) *
                     </label>
                     <input
@@ -847,14 +846,14 @@ export default function AddProductForm() {
                       max="100"
                       value={formData.igst}
                       onChange={(e) => handleInputChange('igst', parseFloat(e.target.value) || 0)}
-                      className={`w-full px-4 py-2 bg-slate-700 border rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 ${
-                        errors.igst ? 'border-red-500' : 'border-slate-600'
+                      className={`w-full px-4 py-2 bg-input border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary ${
+                        errors.igst ? 'border-destructive' : 'border-border'
                       }`}
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       HS Code
                     </label>
                     <input
@@ -862,7 +861,7 @@ export default function AddProductForm() {
                       value={formData.hsCode}
                       onChange={(e) => handleInputChange('hsCode', e.target.value)}
                       placeholder="e.g., 21069090"
-                      className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                      className="w-full px-4 py-2 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                     />
                   </div>
                 </div>
@@ -874,7 +873,7 @@ export default function AddProductForm() {
           {currentStep === 4 && (
             <div className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Tags (comma-separated)
                 </label>
                 <input
@@ -890,7 +889,7 @@ export default function AddProductForm() {
                     )
                   }
                   placeholder="e.g., protein, whey, organic"
-                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-2 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
               <div className="p-4 bg-slate-700/50 rounded-lg">
@@ -905,7 +904,7 @@ export default function AddProductForm() {
           {currentStep === 5 && (
             <div className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Product Webpage URL
                 </label>
                 <input
@@ -913,12 +912,12 @@ export default function AddProductForm() {
                   value={formData.productWebpageUrl}
                   onChange={(e) => handleInputChange('productWebpageUrl', e.target.value)}
                   placeholder="https://example.com/product"
-                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-2 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Video URL
                 </label>
                 <input
@@ -926,7 +925,7 @@ export default function AddProductForm() {
                   value={formData.videoUrl}
                   onChange={(e) => handleInputChange('videoUrl', e.target.value)}
                   placeholder="https://youtube.com/watch?v=..."
-                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-2 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
             </div>
@@ -974,10 +973,10 @@ export default function AddProductForm() {
                 />
               </div>
 
-              <div className="p-4 bg-slate-700/50 rounded-lg flex items-center justify-between border-t border-slate-600 pt-6">
+              <div className="p-4 bg-muted rounded-lg flex items-center justify-between border-t border-border pt-6">
                 <div>
-                  <p className="text-sm font-medium text-slate-300">Active</p>
-                  <p className="text-xs text-slate-500">Product is active and sellable</p>
+                  <p className="text-sm font-medium text-foreground">Active</p>
+                  <p className="text-xs text-muted-foreground">Product is active and sellable</p>
                 </div>
                 <input
                   type="checkbox"
@@ -995,7 +994,7 @@ export default function AddProductForm() {
           <button
             onClick={handlePrev}
             disabled={currentStep === 0}
-            className="flex items-center gap-2 px-6 py-3 bg-slate-700 hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg font-medium transition-all"
+            className="flex items-center gap-2 px-6 py-3 bg-muted hover:bg-muted/80 disabled:opacity-50 disabled:cursor-not-allowed text-foreground rounded-lg font-medium transition-all"
           >
             <ChevronLeft className="w-4 h-4" />
             Previous
@@ -1005,14 +1004,14 @@ export default function AddProductForm() {
             {currentStep === STEPS.length - 1 ? (
               <button
                 onClick={handleSubmit}
-                className="px-8 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-all"
+                className="px-8 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg font-medium transition-all"
               >
                 Submit Product
               </button>
             ) : (
               <button
                 onClick={handleNext}
-                className="flex items-center gap-2 px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all"
+                className="flex items-center gap-2 px-8 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg font-medium transition-all"
               >
                 Next
                 <ChevronRight className="w-4 h-4" />
