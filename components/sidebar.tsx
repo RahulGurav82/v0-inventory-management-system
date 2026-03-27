@@ -119,6 +119,12 @@ const MENU_ITEMS: MenuItem[] = [
         href: '/dashboard/expiry-alerts',
       },
       {
+        id: 'purchase-inward',
+        label: 'Purchase Inward',
+        icon: <Plus className="w-4 h-4" />,
+        href: '/dashboard/inward',
+      },
+      {
         id: 'stock-ledger',
         label: 'Stock Ledger',
         icon: <Clock3 className="w-4 h-4" />,
